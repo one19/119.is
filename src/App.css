@@ -1,0 +1,17 @@
+#root {
+  max-width: 1280px;
+  padding: 3.5em 0 0 calc(50% - 8rem);
+}
+
+.card {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.face {
+  width: 14em;
+  border-radius: 50%;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 3px, rgba(240, 46, 170, 0.3) 10px 6px, rgba(240, 46, 170, 0.2) 15px 9px, rgba(240, 46, 170, 0.1) 20px 12px, rgba(240, 46, 170, 0.05) 25px 15px;
+}
