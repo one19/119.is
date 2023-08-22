@@ -14,6 +14,7 @@ const SKEW = -0.3 as const;
 const getOpacity = (position: number, randomFloat: number): number => {
   const lambda = 5; // Adjust this parameter to control the rate at which opacity increases.
   // the 0.1 is to make the center of the spiral more empty
+  // TODO: normalize position to be independent from spiral segment length
   const opacity = 1 - Math.exp(-lambda * (position - 0.1));
 
   return randomFloat > opacity ? 0 : 1;
@@ -61,18 +62,20 @@ const BasicSpiral: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [randomFloats, setRandomFloats] = useState<number[]>([]);
 
-  const date = new Date();
-  const dateString = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-
+  // lifecycle methods for drawing the spiral on resize
   useEffect(() => {
+    const onResize = () => drawSpiral(canvasRef, randomFloats);
     drawSpiral(canvasRef, randomFloats);
-    window.addEventListener('resize', drawSpiral.bind(null, canvasRef, randomFloats));
+    window.addEventListener('resize', onResize);
 
-    return () =>
-      window.removeEventListener('resize', drawSpiral.bind(null, canvasRef, randomFloats));
+    return () => window.removeEventListener('resize', onResize);
   }, [randomFloats]);
 
+  // lifecycle methods for generating a lookup table
   useEffect(() => {
+    const date = new Date();
+    const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
     const setFloats = async (): Promise<void> => {
       const floats = await generateFloatLookup(SPIRAL_LINES, dateString);
       setRandomFloats(floats);
@@ -81,9 +84,14 @@ const BasicSpiral: React.FC = () => {
     setFloats()
       .then(() => console.log("Generated today's floats"))
       .catch(console.error);
-  }, [dateString]);
+  }, []);
 
-  return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0 }} />;
+  return (
+    <div>
+      <ShowCodeButton className="basic-spiral-code" code={fileContents} title="BackgroundSpiral" />
+      <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, right: 0 }} />
+    </div>
+  );
 };
 
 export default BasicSpiral;
