@@ -17,6 +17,7 @@ module.exports = {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     tsconfigRootDir: __dirname,
   },
+  'import/no-unresolved': [2, { ignore: ['^@raw'] }],
   plugins: ['react-refresh', 'prettier'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
