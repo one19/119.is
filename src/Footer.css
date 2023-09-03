@@ -2,7 +2,11 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  align-items: flex-start;
+}
+
+.linkHolster {
+  display: flex;
+  align-items: center;
 }
 
 .logo {

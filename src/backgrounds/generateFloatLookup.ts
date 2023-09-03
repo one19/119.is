@@ -13,6 +13,6 @@ const generateFloatLookup = async (count: number, today: string): Promise<number
   });
 };
 
-console.log("Please ask me why I'm generating a lookup table for drawing a pretty spiral!");
+console.log("Please ask me why I'm generating a lookup table for drawing random things!");
 
 export default generateFloatLookup;

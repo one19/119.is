@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import generateFloatLookup from './generateFloatLookup';
-import ShowCodeButton from './ShowCodeButton';
+import generateFloatLookup from '../generateFloatLookup';
+import ShowCodeButton from '../../ShowCodeButton';
 
 // our magic vite plugin transforms this into the raw code of this file
 const fileContents = '@raw';
