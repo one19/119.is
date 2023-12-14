@@ -1,18 +1,29 @@
 import { useState } from 'react';
 import BackgroundSpinner from './backgrounds/spinner/BasicSpinner';
 import BackgroundSpiral from './backgrounds/spiral/BasicSpiral';
+import LegoBackground from './backgrounds/lego/Map';
 import Footer from './Footer';
 import Toggle from './Toggle';
 import faceUrl from './assets/face-tinyfied.jpg';
 import resumeUrl from './assets/resume.pdf';
 import './App.css';
 
+const renderBackground = (state: number) => {
+  if (state === 1) return <BackgroundSpinner />;
+  if (state === 2) return <LegoBackground />;
+  return <BackgroundSpiral />;
+};
+
 const App = () => {
-  const [spinnerGo, setSpinnerGo] = useState(false);
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+
+  const handleBackgroundChange = () => {
+    setBackgroundIndex((prevIndex) => (prevIndex + 1) % 3);
+  };
 
   return (
     <>
-      {spinnerGo ? <BackgroundSpinner /> : <BackgroundSpiral />}
+      {renderBackground(backgroundIndex)}
       <h1>John Drew Showalter</h1>
       <img className="face" src={faceUrl} alt="John Drew Showalter" />
       <div className="card">
@@ -34,7 +45,7 @@ const App = () => {
         </ul>
       </div>
       <Footer>
-        <Toggle isOn={spinnerGo} setIsOn={setSpinnerGo} />
+        <Toggle state={backgroundIndex} nextState={handleBackgroundChange} />
       </Footer>
     </>
   );
