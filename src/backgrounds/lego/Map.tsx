@@ -16,28 +16,8 @@ const colors = [
   '#FE5F6B',
 ];
 
-// const _drawSquareMap = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
-//   const canvas = canvasRef.current;
-//   const ctx = canvas?.getContext('2d');
-
-//   if (ctx && canvas) {
-//     // Set canvas size
-//     canvas.width = window.innerWidth;
-//     canvas.height = (window.innerWidth * 80) / 128;
-//     const width = window.innerWidth / 128;
-
-//     // Draw on canvas
-//     file.split('\n').forEach((line, y) => {
-//       line.split(',').forEach((colorIndex, x) => {
-//         ctx.fillStyle = colors[parseInt(colorIndex) - 1];
-//         ctx.fillRect(x * width, y * width, width, width);
-//       });
-//     });
-//   }
-// };
-
 const Wrapper = styled.div`
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -45,7 +25,6 @@ const Wrapper = styled.div`
   top: 0;
   justify-content: center;
   align-items: center;
-  z-index: -10;
 `;
 
 const ImageContainer = styled.div<{ width: number }>`
@@ -55,9 +34,13 @@ const ImageContainer = styled.div<{ width: number }>`
   width: ${(props) => props.width}px;
   height: 100%;
   overflow: hidden;
+  user-select: none;
 `;
 
 const Divider = styled.div<{ left: number }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 0;
   left: ${(props) => props.left}px;
@@ -65,10 +48,18 @@ const Divider = styled.div<{ left: number }>`
   width: 5px;
   background-color: black;
   cursor: ew-resize;
-  z-index: 500;
+  user-select: none;
 `;
 
-const drawMap = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
+type CanvasDimensions = {
+  width: number;
+  height: number;
+};
+
+const drawMap = (
+  canvasRef: React.RefObject<HTMLCanvasElement>,
+  setCanvasDimensions: (dims: CanvasDimensions) => void
+) => {
   const canvas = canvasRef.current;
   const ctx = canvas?.getContext('2d');
 
@@ -76,6 +67,7 @@ const drawMap = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
     // Set canvas size
     canvas.width = window.innerWidth;
     canvas.height = (window.innerWidth * 80) / 128;
+    setCanvasDimensions({ width: canvas.width, height: canvas.height });
     const radius = window.innerWidth / 256; // Half of the width for a full circle
 
     // Draw on canvas
@@ -113,10 +105,11 @@ const drawMap = (canvasRef: React.RefObject<HTMLCanvasElement>) => {
 const LegoMap = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [dividerPosition, setDividerPosition] = useState(window.innerWidth / 20);
+  const [canvasDimensions, setCanvasDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    const onResize = () => drawMap(canvasRef);
-    drawMap(canvasRef);
+    const onResize = () => drawMap(canvasRef, setCanvasDimensions);
+    drawMap(canvasRef, setCanvasDimensions);
     window.addEventListener('resize', onResize);
 
     return () => window.removeEventListener('resize', onResize);
@@ -143,16 +136,17 @@ const LegoMap = () => {
         <img
           src={mapImageUrl}
           style={{
-            width: canvasRef.current?.width,
-            height: canvasRef.current?.height,
+            width: canvasDimensions.width,
+            height: canvasDimensions.height,
             left: 0,
             top: 0,
             opacity: 0.15,
-            userSelect: 'none',
           }}
         />
       </ImageContainer>
-      <Divider left={dividerPosition} onMouseDown={handleMouseDown}></Divider>
+      <Divider left={dividerPosition} onMouseDown={handleMouseDown}>
+        ◀▶
+      </Divider>
     </Wrapper>
   );
 };

@@ -24,9 +24,30 @@ const rainbow = `
     rgba(119, 71, 135, 0.3)
   );
 `;
-const moon = `
+const lego = `
+  position: relative;
+  border-radius: 50%;
   background-color: yellow;
-  box-shadow: 5px 5px 10px gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:after {
+    content: 'LEGO';
+    position: absolute;
+    color: grey;
+    top: 2.5px;
+    left: 2.5px;
+    width: 15px;
+    height: 15px;
+    background-color: yellow;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: 5px;
+  }
 `;
 const defaultCircle = `
   background-color: #fff5;
@@ -44,7 +65,7 @@ const StyledCircle = styled.div<{ state: number; isRight: boolean }>`
 
   ${({ state }) => {
     if (state === 1) return rainbow;
-    if (state === 2) return moon;
+    if (state === 2) return lego;
     return defaultCircle;
   }}}
 `;
