@@ -87,10 +87,10 @@ const BasicSpiral: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <ShowCodeButton className="basic-spiral-code" code={fileContents} title="BackgroundSpiral" />
+    <>
+      <ShowCodeButton code={fileContents} title="BackgroundSpiral" />
       <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, right: 0 }} />
-    </div>
+    </>
   );
 };
 
