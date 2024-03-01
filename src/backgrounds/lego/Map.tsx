@@ -1,7 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import file from './map.txt?raw'; // https://policyviz.com/2021/06/14/lego-world-map-excel-edition/
-import mapImageUrl from '../..//assets/equirectangular-projection.jpg';
+import mapImageUrl from '../../assets/equirectangular-projection.jpg';
+import ShowCodeButton from '../../ShowCodeButton';
+
+const fileContents = '@raw';
 
 const colors = [
   '#EEEEEE',
@@ -105,7 +108,10 @@ const drawMap = (
 const LegoMap = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [dividerPosition, setDividerPosition] = useState(window.innerWidth / 20);
-  const [canvasDimensions, setCanvasDimensions] = useState({ width: 0, height: 0 });
+  const [canvasDimensions, setCanvasDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
     const onResize = () => drawMap(canvasRef, setCanvasDimensions);
@@ -130,24 +136,27 @@ const LegoMap = () => {
   };
 
   return (
-    <Wrapper>
-      <canvas ref={canvasRef} style={{ width: '100%', height: '100%', opacity: 0.05 }} />
-      <ImageContainer width={dividerPosition}>
-        <img
-          src={mapImageUrl}
-          style={{
-            width: canvasDimensions.width,
-            height: canvasDimensions.height,
-            left: 0,
-            top: 0,
-            opacity: 0.15,
-          }}
-        />
-      </ImageContainer>
-      <Divider left={dividerPosition} onMouseDown={handleMouseDown}>
-        ◀▶
-      </Divider>
-    </Wrapper>
+    <>
+      <ShowCodeButton code={fileContents} title="BackgroundLego" />
+      <Wrapper>
+        <canvas ref={canvasRef} style={{ width: '100%', height: '100%', opacity: 0.05 }} />
+        <ImageContainer width={dividerPosition}>
+          <img
+            src={mapImageUrl}
+            style={{
+              width: canvasDimensions.width,
+              height: canvasDimensions.height,
+              left: 0,
+              top: 0,
+              opacity: 0.15,
+            }}
+          />
+        </ImageContainer>
+        <Divider left={dividerPosition} onMouseDown={handleMouseDown}>
+          ◀▶
+        </Divider>
+      </Wrapper>
+    </>
   );
 };
 
