@@ -108,14 +108,10 @@ const BasicSpinner = () => {
   }, [angle, segments]);
 
   return (
-    <div>
-      <ShowCodeButton
-        className="basic-spinner-code"
-        code={fileContents}
-        title="BackgroundSpinner"
-      />
+    <>
+      <ShowCodeButton code={fileContents} title="BackgroundSpinner" />
       <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, right: 0 }} />
-    </div>
+    </>
   );
 };
 
