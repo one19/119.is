@@ -14,7 +14,8 @@ type Props = {
 const Footer = ({ children }: Props) => (
   <div className="footer">
     <p>
-      Made with <span className="heart">♥</span> with the following technologies:
+      Made with <span className="heart">♥</span> with the following
+      technologies:
     </p>
     <div className="linkHolster">
       <a href="https://vitejs.dev" target="_blank">
@@ -36,7 +37,11 @@ const Footer = ({ children }: Props) => (
         <img src={eslintLogo} className="logo eslint" alt="Eslint logo" />
       </a>
       <a href="https://www.cloudflare.com/" target="_blank">
-        <img src={cloudflareLogo} className="logo cloudflare" alt="Cloudflare logo" />
+        <img
+          src={cloudflareLogo}
+          className="logo cloudflare"
+          alt="Cloudflare logo"
+        />
       </a>
       {children}
     </div>

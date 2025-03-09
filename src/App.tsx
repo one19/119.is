@@ -47,7 +47,10 @@ const App = () => {
       <h1>John Drew Showalter</h1>
       <Face src={faceUrl} alt="John Drew Showalter" />
       <Card>
-        <p>Lead developer with 8+ years of experience in full-stack web development.</p>
+        <p>
+          Lead developer with 8+ years of experience in full-stack web
+          development.
+        </p>
         <ul>
           <li>
             <a href={resumeUrl} target="_blank">

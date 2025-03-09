@@ -20,7 +20,10 @@ const getOpacity = (position: number, randomFloat: number): number => {
   return randomFloat > opacity ? 0 : 1;
 };
 
-const drawSpiral = (canvasRef: React.RefObject<HTMLCanvasElement>, randomFloats: number[]) => {
+const drawSpiral = (
+  canvasRef: React.RefObject<HTMLCanvasElement>,
+  randomFloats: number[],
+) => {
   const canvas = canvasRef.current;
   if (!canvas) return;
 
@@ -35,7 +38,11 @@ const drawSpiral = (canvasRef: React.RefObject<HTMLCanvasElement>, randomFloats:
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
 
-  const drawSpiralSegment = (startAngle: number, endAngle: number, opacity: number) => {
+  const drawSpiralSegment = (
+    startAngle: number,
+    endAngle: number,
+    opacity: number,
+  ) => {
     ctx.beginPath();
     for (let a = startAngle; a < endAngle; a += 0.01) {
       const r = 2 * a;
@@ -54,7 +61,11 @@ const drawSpiral = (canvasRef: React.RefObject<HTMLCanvasElement>, randomFloats:
   for (let segment = 0; segment < SPIRAL_SEGMENTS; segment++) {
     const position = segment / SPIRAL_SEGMENTS; // Normalize the segment position between 0 and 1
     const opacity = getOpacity(position, randomFloats[segment]);
-    drawSpiralSegment(segment * segmentAngle, (segment + 1) * segmentAngle, opacity);
+    drawSpiralSegment(
+      segment * segmentAngle,
+      (segment + 1) * segmentAngle,
+      opacity,
+    );
   }
 };
 
