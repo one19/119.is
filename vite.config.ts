@@ -5,6 +5,9 @@ import rawPlugin from './rawPlugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    assetsInlineLimit: 0,
+  },
   plugins: [
     rawPlugin(),
     TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),

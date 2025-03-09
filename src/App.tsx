@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Toggle from './Toggle';
 import faceUrl from './assets/face-tinyfied.jpg';
 import resumeUrl from './assets/resume.pdf';
+import Logo from './Logo';
 import styled from '@emotion/styled';
 
 const Card = styled.div`
@@ -20,6 +21,8 @@ const Face = styled.img`
   width: 14em;
   border-radius: 50%;
   z-index: 100;
+  cursor: pointer;
+  user-select: none;
   box-shadow:
     rgba(240, 46, 170, 0.4) 5px 3px,
     rgba(240, 46, 170, 0.3) 10px 6px,
@@ -36,6 +39,7 @@ const renderBackground = (state: number) => {
 
 const App = () => {
   const [backgroundIndex, setBackgroundIndex] = useState(0);
+  const [logoVisible, setLogoVisible] = useState(false);
 
   const handleBackgroundChange = () => {
     setBackgroundIndex((prevIndex) => (prevIndex + 1) % 3);
@@ -45,7 +49,15 @@ const App = () => {
     <>
       {renderBackground(backgroundIndex)}
       <h1>John Drew Showalter</h1>
-      <Face src={faceUrl} alt="John Drew Showalter" />
+      {logoVisible ? (
+        <Logo onClick={() => setLogoVisible(false)} />
+      ) : (
+        <Face
+          src={faceUrl}
+          alt="John Drew Showalter"
+          onClick={() => setLogoVisible(true)}
+        />
+      )}
       <Card>
         <p>
           Lead developer with 8+ years of experience in full-stack web
