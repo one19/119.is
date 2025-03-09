@@ -21,7 +21,7 @@ const getOpacity = (position: number, randomFloat: number): number => {
 };
 
 const drawSpiral = (
-  canvasRef: React.RefObject<HTMLCanvasElement>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
   randomFloats: number[],
 ) => {
   const canvas = canvasRef.current;

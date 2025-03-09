@@ -60,7 +60,7 @@ const App = () => {
       )}
       <Card>
         <p>
-          Lead developer with 8+ years of experience in full-stack web
+          Lead developer with 10 years of experience in full-stack web
           development.
         </p>
         <ul>

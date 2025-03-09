@@ -7,6 +7,7 @@ import rawPlugin from './rawPlugin';
 export default defineConfig({
   build: {
     assetsInlineLimit: 2048,
+    chunkSizeWarningLimit: 750,
   },
   plugins: [
     rawPlugin(),
