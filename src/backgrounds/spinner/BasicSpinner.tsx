@@ -24,9 +24,9 @@ const colors = [
 ];
 
 const drawSegments = (
-  canvasRef: React.RefObject<HTMLCanvasElement>,
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
   segments: Segment[],
-  angle: number
+  angle: number,
 ) => {
   const canvas = canvasRef.current;
   if (!canvas) return;
@@ -55,7 +55,7 @@ const drawSegments = (
       0,
       segment.radius,
       segment.startAngle + angle * segment.rotationDirection,
-      segment.endAngle + angle * segment.rotationDirection
+      segment.endAngle + angle * segment.rotationDirection,
     );
 
     ctx.stroke();
@@ -87,7 +87,7 @@ const getSegments = () => {
 };
 
 const BasicSpinner = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [segments] = useState<Segment[]>(getSegments());
   const [angle, setAngle] = useState(0);
 

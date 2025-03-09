@@ -1,4 +1,7 @@
-const generateFloatLookup = async (count: number, today: string): Promise<number[]> => {
+const generateFloatLookup = async (
+  count: number,
+  today: string,
+): Promise<number[]> => {
   const encoder = new TextEncoder();
   const data = encoder.encode(today);
 
@@ -8,11 +11,14 @@ const generateFloatLookup = async (count: number, today: string): Promise<number
 
   return Array.from({ length: count }, (_, i) => {
     const idx = (2 * i) % hashArray.length;
-    const combinedValue = (hashArray[idx] << 8) + hashArray[(idx + 1) % hashArray.length];
+    const combinedValue =
+      (hashArray[idx] << 8) + hashArray[(idx + 1) % hashArray.length];
     return combinedValue / 65535;
   });
 };
 
-console.log("Please ask me why I'm generating a lookup table for drawing random things!");
+console.log(
+  "Please ask me why I'm generating a lookup table for drawing random things!",
+);
 
 export default generateFloatLookup;

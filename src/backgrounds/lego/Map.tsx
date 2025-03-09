@@ -60,10 +60,11 @@ type CanvasDimensions = {
 };
 
 const drawMap = (
-  canvasRef: React.RefObject<HTMLCanvasElement>,
-  setCanvasDimensions: (dims: CanvasDimensions) => void
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
+  setCanvasDimensions: (dims: CanvasDimensions) => void,
 ) => {
   const canvas = canvasRef.current;
+  if (!canvas) return;
   const ctx = canvas?.getContext('2d');
 
   if (ctx && canvas) {
@@ -81,14 +82,26 @@ const drawMap = (
 
         // Draw base circle
         ctx.beginPath();
-        ctx.arc(x * radius * 2 + radius, y * radius * 2 + radius, radius, 0, Math.PI * 2);
+        ctx.arc(
+          x * radius * 2 + radius,
+          y * radius * 2 + radius,
+          radius,
+          0,
+          Math.PI * 2,
+        );
         ctx.fill();
 
         // Draw raised circle for colorIndex === 1
         if (parsedIndex === 0) {
           ctx.fillStyle = 'white';
           ctx.beginPath();
-          ctx.arc(x * radius * 2 + radius, y * radius * 2 + radius, radius / 2, 0, Math.PI * 2);
+          ctx.arc(
+            x * radius * 2 + radius,
+            y * radius * 2 + radius,
+            radius / 2,
+            0,
+            Math.PI * 2,
+          );
           ctx.fill();
 
           // Draw rotated "LEGO" text
@@ -107,7 +120,9 @@ const drawMap = (
 
 const LegoMap = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [dividerPosition, setDividerPosition] = useState(window.innerWidth / 20);
+  const [dividerPosition, setDividerPosition] = useState(
+    window.innerWidth / 20,
+  );
   const [canvasDimensions, setCanvasDimensions] = useState({
     width: 0,
     height: 0,
@@ -139,7 +154,10 @@ const LegoMap = () => {
     <>
       <ShowCodeButton code={fileContents} title="BackgroundLego" />
       <Wrapper>
-        <canvas ref={canvasRef} style={{ width: '100%', height: '100%', opacity: 0.05 }} />
+        <canvas
+          ref={canvasRef}
+          style={{ width: '100%', height: '100%', opacity: 0.05 }}
+        />
         <ImageContainer width={dividerPosition}>
           <img
             src={mapImageUrl}
