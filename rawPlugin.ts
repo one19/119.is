@@ -2,6 +2,7 @@ import fs from 'fs';
 
 const fileContentsRegex = /const fileContents = ["']@raw["'];/;
 
+// read our code, and bake it into our code-viewer in the app
 const rawImportPlugin = () => ({
   name: 'vite-plugin-raw-import',
   resolveId(source) {

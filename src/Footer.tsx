@@ -9,14 +9,32 @@ import cloudflareLogo from './assets/cloudflare.svg';
 import tanstackLogo from './assets/tanstack.png';
 
 const FooterContainer = styled.div`
-  position: absolute;
+  position: relative;
   bottom: 0;
   right: 0;
+  padding: 1em;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding: 0;
+    text-align: right;
+
+    p {
+      margin-right: 1em;
+    }
+  }
 `;
 
 const LinkHolster = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+
+  @media (min-width: 768px) {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
 `;
 
 const LogoImg = styled.img<{ hoverGlow: string }>`
@@ -42,6 +60,11 @@ const LogoImg = styled.img<{ hoverGlow: string }>`
     to {
       transform: rotate(360deg);
     }
+  }
+
+  @media (max-width: 767px) {
+    height: 1.5em;
+    padding: 0.25em;
   }
 `;
 

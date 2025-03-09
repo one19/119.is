@@ -9,6 +9,14 @@ import resumeUrl from './assets/resume.pdf';
 import Logo from './Logo';
 import styled from '@emotion/styled';
 
+const Wrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  padding: 3.5em 0 0 calc(50% - 8rem);
+  height: 100%;
+`;
+
 const Card = styled.div`
   padding: 2em;
   display: flex;
@@ -47,38 +55,40 @@ const App = () => {
 
   return (
     <>
-      {renderBackground(backgroundIndex)}
-      <h1>John Drew Showalter</h1>
-      {logoVisible ? (
-        <Logo onClick={() => setLogoVisible(false)} />
-      ) : (
-        <Face
-          src={faceUrl}
-          alt="John Drew Showalter"
-          onClick={() => setLogoVisible(true)}
-        />
-      )}
-      <Card>
-        <p>
-          Lead developer with 10 years of experience in full-stack web
-          development.
-        </p>
-        <ul>
-          <li>
-            <a href={resumeUrl} target="_blank">
-              My resume
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/one19" target="_blank">
-              My GitHub profile
-            </a>
-          </li>
-          <li>
-            <a href="mailto:drew@119.is">Email me</a> anytime!
-          </li>
-        </ul>
-      </Card>
+      <Wrapper>
+        {renderBackground(backgroundIndex)}
+        <h1>John Drew Showalter</h1>
+        {logoVisible ? (
+          <Logo onClick={() => setLogoVisible(false)} />
+        ) : (
+          <Face
+            src={faceUrl}
+            alt="John Drew Showalter"
+            onClick={() => setLogoVisible(true)}
+          />
+        )}
+        <Card>
+          <p>
+            Lead developer with 10 years of experience in full-stack web
+            development.
+          </p>
+          <ul>
+            <li>
+              <a href={resumeUrl} target="_blank">
+                My resume
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/one19" target="_blank">
+                My GitHub profile
+              </a>
+            </li>
+            <li>
+              <a href="mailto:drew@119.is">Email me</a> anytime!
+            </li>
+          </ul>
+        </Card>
+      </Wrapper>
       <Footer>
         <Toggle state={backgroundIndex} nextState={handleBackgroundChange} />
       </Footer>

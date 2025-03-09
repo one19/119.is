@@ -37,8 +37,10 @@ const globalStyles = css`
   }
 
   #root {
-    max-width: 1280px;
-    padding: 3.5em 0 0 calc(50% - 8rem);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
   body {
