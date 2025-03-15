@@ -8,6 +8,7 @@ import faceUrl from './assets/face-tinyfied.jpg';
 import resumeUrl from './assets/resume.pdf';
 import Logo from './Logo';
 import styled from '@emotion/styled';
+import DescriptorRoller from './DescriptorRoller';
 
 const Wrapper = styled.main`
   display: flex;
@@ -58,6 +59,7 @@ const App = () => {
       <Wrapper>
         {renderBackground(backgroundIndex)}
         <h1>John Drew Showalter</h1>
+        <DescriptorRoller />
         {logoVisible ? (
           <Logo onClick={() => setLogoVisible(false)} />
         ) : (

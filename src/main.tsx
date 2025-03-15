@@ -54,6 +54,7 @@ const globalStyles = css`
   h1 {
     font-size: var(--main-header-font-size);
     line-height: var(--main-header-line-height);
+    margin: 0;
   }
 
   @media (prefers-color-scheme: light) {
