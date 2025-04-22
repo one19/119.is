@@ -1,14 +1,14 @@
 import { useState } from 'react';
+import styled from '@emotion/styled';
+import resumeUrl from '/Resume - apr 2025.pdf';
 import BackgroundSpinner from './backgrounds/spinner/BasicSpinner';
 import BackgroundSpiral from './backgrounds/spiral/BasicSpiral';
 import LegoBackground from './backgrounds/lego/Map';
+import DescriptorRoller from './DescriptorRoller';
+import faceUrl from './assets/face-tinyfied.jpg';
 import Footer from './Footer';
 import Toggle from './Toggle';
-import faceUrl from './assets/face-tinyfied.jpg';
-import resumeUrl from './assets/resume.pdf';
 import Logo from './Logo';
-import styled from '@emotion/styled';
-import DescriptorRoller from './DescriptorRoller';
 
 const Wrapper = styled.main`
   display: flex;
