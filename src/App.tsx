@@ -9,6 +9,7 @@ import faceUrl from './assets/face-tinyfied.jpg';
 import Footer from './Footer';
 import Toggle from './Toggle';
 import Logo from './Logo';
+import D20Logo from './D20Logo';
 
 const Wrapper = styled.main`
   display: flex;
@@ -46,9 +47,15 @@ const renderBackground = (state: number) => {
   return <BackgroundSpiral />;
 };
 
+enum LogoState {
+  Face = 'face',
+  Logo = 'logo',
+  D20 = 'd20',
+}
+
 const App = () => {
   const [backgroundIndex, setBackgroundIndex] = useState(0);
-  const [logoVisible, setLogoVisible] = useState(false);
+  const [logoState, setLogoState] = useState<LogoState>(LogoState.Face);
 
   const handleBackgroundChange = () => {
     setBackgroundIndex((prevIndex) => (prevIndex + 1) % 3);
@@ -60,14 +67,16 @@ const App = () => {
         {renderBackground(backgroundIndex)}
         <h1>John Drew Showalter</h1>
         <DescriptorRoller />
-        {logoVisible ? (
-          <Logo onClick={() => setLogoVisible(false)} />
-        ) : (
+        {logoState === LogoState.Face ? (
           <Face
             src={faceUrl}
             alt="John Drew Showalter"
-            onClick={() => setLogoVisible(true)}
+            onClick={() => setLogoState(LogoState.Logo)}
           />
+        ) : logoState === LogoState.Logo ? (
+          <Logo onClick={() => setLogoState(LogoState.D20)} />
+        ) : (
+          <D20Logo onClick={() => setLogoState(LogoState.Face)} />
         )}
         <Card>
           <p>
@@ -85,6 +94,9 @@ const App = () => {
                 My GitHub profile
               </a>
             </li>
+            {/* <li>
+              <a href="/blogging">My blog</a>
+            </li> */}
             <li>
               <a href="mailto:drew@119.is">Email me</a> anytime!
             </li>

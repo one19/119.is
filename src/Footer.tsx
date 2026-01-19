@@ -9,7 +9,7 @@ import cloudflareLogo from './assets/cloudflare.svg';
 import tanstackLogo from './assets/tanstack.png';
 
 const FooterContainer = styled.div`
-  position: relative;
+  position: sticky;
   bottom: 0;
   right: 0;
   padding: 1em;

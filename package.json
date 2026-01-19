@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.14.0",
+    "@mdx-js/react": "^3.1.0",
+    "@mdx-js/rollup": "^3.1.0",
     "@tanstack/react-router": "^1.116.0",
     "@tanstack/router-plugin": "^1.116.1",
     "nanoid": "^5.1.5",
@@ -21,7 +23,7 @@
   "devDependencies": {
     "@eslint/js": "^9.25.1",
     "@rollup/plugin-dsv": "^3.0.5",
-    "@tanstack/router-devtools": "^1.116.0",
+    "@tanstack/react-router-devtools": "^1.129.0",
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
@@ -35,6 +37,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.0.0",
+    "gray-matter": "^4.0.3",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.0",
