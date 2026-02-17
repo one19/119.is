@@ -113,8 +113,10 @@ const DescriptorRoller = () => {
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * descriptors.length);
+
+    // it's fine; this is a mount hook. It can't cause a loop.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedIndex(randomIndex);
-    // Trigger the roll animation after mount
     const timer = setTimeout(() => setAnimate(true), 100);
     return () => clearTimeout(timer);
   }, []);
