@@ -63,7 +63,7 @@ type Props = {
 };
 
 const RainbowLogo = ({ maskUrl, onClick }: Props) => (
-  <Wrapper onClick={onClick}>
+  <Wrapper onMouseDown={onClick}>
     <MaskContainer maskUrl={maskUrl}>
       <RainbowGradient />
     </MaskContainer>

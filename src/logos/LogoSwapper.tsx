@@ -59,7 +59,7 @@ const LogoSwapper = () => {
     <FaceImg
       src={faceUrl}
       alt="John Drew Showalter"
-      onClick={() => setLogoState(LogoState.Logo)}
+      onMouseDown={() => setLogoState(LogoState.Logo)}
     />
   );
 };
