@@ -6,7 +6,7 @@ import rawPlugin from './rawPlugin';
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    assetsInlineLimit: 2048,
+    assetsInlineLimit: 10,
     chunkSizeWarningLimit: 750,
   },
   plugins: [

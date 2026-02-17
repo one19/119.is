@@ -86,6 +86,10 @@ const descriptors = [
   'Never learned Dvorak',
   'Unironically loves JS',
   'Has forgotten the old ways',
+  'Just happy to be here',
+  'Is a stranger here (everywhere) himself',
+  'Hates clankers',
+  'On a journey',
 ];
 
 const DescriptorRoller = () => {

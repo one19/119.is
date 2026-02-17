@@ -1,24 +1,27 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
-import logo from './assets/logo.svg?url';
 
 const Wrapper = styled.div`
   position: relative;
-  width: calc(14em + 20px);
-  height: calc(14em + 20px);
+  width: 14em;
+  height: 14em;
   cursor: pointer;
   background: black;
   border-radius: 50%;
   user-select: none;
 `;
 
-const MaskContainer = styled.div`
+const MaskContainer = styled.div<{ maskUrl: string }>`
   position: absolute;
   inset: 1.5em;
-  mask-image: url(${logo});
+  mask-image: url(${({ maskUrl }) => maskUrl});
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
+  -webkit-mask-image: url(${({ maskUrl }) => maskUrl});
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 `;
 
 const slideBackground = keyframes`
@@ -30,7 +33,7 @@ const slideBackground = keyframes`
   }
 `;
 
-const RotatingGradient = styled.div`
+const RainbowGradient = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(
@@ -55,15 +58,16 @@ const RotatingGradient = styled.div`
 `;
 
 type Props = {
+  maskUrl: string;
   onClick: () => void;
 };
 
-const Logo = ({ onClick }: Props) => (
+const RainbowLogo = ({ maskUrl, onClick }: Props) => (
   <Wrapper onClick={onClick}>
-    <MaskContainer>
-      <RotatingGradient />
+    <MaskContainer maskUrl={maskUrl}>
+      <RainbowGradient />
     </MaskContainer>
   </Wrapper>
 );
 
-export default Logo;
+export default RainbowLogo;
