@@ -24,7 +24,7 @@
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-dsv": "^3.0.5",
     "@tanstack/react-router-devtools": "^1.160.2",
-    "@types/node": "^25.2.3",
+    "@types/node": "^25.3.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
